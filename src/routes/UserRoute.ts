@@ -18,5 +18,6 @@ export default class UserRoute extends RouteStarter {
 
   public routes (application: express.Application): void {
     application.get('/users', this.userController.all.bind(null, this.userService))
+    application.post('/users', this.userController.create.bind(null, this.userService))
   }
 }
