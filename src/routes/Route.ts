@@ -1,12 +1,15 @@
 import express from 'express'
+import cors from 'cors'
 
-export default abstract class Route {
-  protected express: express.Application
+export default abstract class RouteStarter {
+  public express: express.Application
 
   public constructor () {
     this.express = express()
-    this.routes()
   }
 
-  public abstract routes (): void
+  public middlewares (): void {
+    this.express.use(express.json())
+    this.express.use(cors())
+  }
 }

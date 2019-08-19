@@ -1,24 +1,16 @@
-import express from 'express'
-import cors from 'cors'
+import RouteStarter from './routes/Route'
+import UserRoute from './routes/UserRoute'
 
-class App {
-  public express: express.Application
+class App extends RouteStarter {
+  private userRoute = new UserRoute()
 
-  public constructor () {
-    this.express = express()
-    this.middlewares()
+  constructor () {
+    super()
     this.routes()
   }
 
-  private middlewares (): void {
-    this.express.use(express.json())
-    this.express.use(cors())
-  }
-
-  private routes (): void {
-    this.express.get('/', (req, res) => {
-      res.send()
-    })
+  public routes (): void {
+    this.userRoute.routes(this.express)
   }
 }
 export default new App().express
