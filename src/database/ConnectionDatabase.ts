@@ -1,5 +1,19 @@
-// import { Sequelize } from 'sequelize'
-import config from '../config/config'
+import { Sequelize } from 'sequelize-typescript'
+import config from '../config/Config'
 export default class ConnectionDatabase {
-  static async connect (): Promise<void> {}
+  static async connect (): Promise<void> {
+    const sequelize = new Sequelize({
+      database: config.development.mysqlDatabase,
+      username: config.development.mysqlUser,
+      password: config.development.rootPassword,
+      host: config.development.host,
+      port: +config.development.port,
+      dialect: 'mysql'
+    })
+    try {
+      await sequelize.authenticate()
+    } catch (error) {
+      console.error(error)
+    }
+  }
 }
