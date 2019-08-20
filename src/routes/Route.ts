@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 
-export default abstract class RouteStarter {
+abstract class RouteType {
   public express: express.Application
 
   public constructor () {
@@ -17,3 +17,5 @@ export default abstract class RouteStarter {
     this.express.use(bodyParser.urlencoded({ extended: false }))
   }
 }
+
+export default RouteType

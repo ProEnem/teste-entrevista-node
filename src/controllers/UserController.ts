@@ -11,4 +11,9 @@ export default class UserController {
     const user = service.create()
     response.send(user)
   }
+
+  public authenticate (service: UserService, request: Request, response: Response): void {
+    const user = service.create()
+    response.send(user)
+  }
 }

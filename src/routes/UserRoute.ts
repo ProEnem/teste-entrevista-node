@@ -1,11 +1,11 @@
 import express from 'express'
-
 import UserController from '../controllers/UserController'
 import UserService from '../services/UserService'
-import RouteStarter from './Route'
+import RouteType from './Route'
+import ConnectionDatabase from '../database/ConnectionDatabase'
 
 // TO DO: Insert decorators for controller and service
-export default class UserRoute extends RouteStarter {
+export default class UserRoute extends RouteType {
   private userController = new UserController()
 
   private userService = new UserService()
@@ -16,8 +16,10 @@ export default class UserRoute extends RouteStarter {
     this.userService = new UserService()
   }
 
-  public routes (application: express.Application): void {
+  public async routes (application: express.Application): Promise<void> {
+    await ConnectionDatabase.connect()
     application.get('/users', this.userController.all.bind(null, this.userService))
     application.post('/users', this.userController.create.bind(null, this.userService))
+    application.post('/authenticate', this.userController.authenticate.bind(null, this.userService))
   }
 }

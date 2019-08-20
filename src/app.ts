@@ -1,7 +1,7 @@
-import RouteStarter from './routes/Route'
+import RouteType from './routes/Route'
 import UserRoute from './routes/UserRoute'
 
-class App extends RouteStarter {
+class App extends RouteType {
   private userRoute = new UserRoute()
 
   constructor () {
@@ -9,7 +9,7 @@ class App extends RouteStarter {
     this.routes()
   }
 
-  public routes (): void {
+  public async routes (): Promise<void> {
     this.userRoute.routes(this.express)
   }
 }
