@@ -8,3 +8,15 @@ services:
       - "3333:3333"
     volumes:
       - .:/usr/app
+
+  # MySQL
+  mysql-57:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: lollerskates
+      MYSQL_DATABASE: sequelize_test
+      MYSQL_USER: sequelize_test
+      MYSQL_PASSWORD: sequelize_test
+    ports:
+      - "3306:3306"
+    container_name: mysql-57
