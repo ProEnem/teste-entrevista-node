@@ -9,7 +9,6 @@ const checkJwt = async (request: Request, response: Response, next: NextFunction
     return
   }
   const parts = authHeader.split(' ')
-  console.info(parts)
   if (!(parts.length === 2)) {
     response.status(400).send({ error: 'Token error' })
   }
@@ -19,7 +18,7 @@ const checkJwt = async (request: Request, response: Response, next: NextFunction
   }
   try {
     const decoded = await jwt.verify(token, config.development.secret) as object
-    request['userId'] = decoded['id']
+    request['userId'] = decoded['id'] as number
     return next()
   } catch (error) {
     if (error) {

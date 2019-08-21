@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs'
 
-export default class BcryptHelper {
+export default abstract class BcryptHelper {
   static async compare (password: string, userPassword: string): Promise<boolean> {
     try {
       const result = await bcrypt.compare(password, userPassword)

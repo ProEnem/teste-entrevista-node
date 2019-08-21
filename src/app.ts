@@ -1,5 +1,5 @@
 import RouteType from './routes/Route'
-import UserRoute from './routes/UserRoute'
+import UserRoute from './routes/StudentRoute'
 import ConnectionDatabase from './database/ConnectionDatabase'
 
 class App extends RouteType {
