@@ -26,9 +26,16 @@ export default class StudentService {
     return testGrades
   }
 
-  public async findAverage (id: number): Promise<Evaluation[]> {
+  public async findAverage (id: number): Promise<[Evaluation[], number]> {
     const allEvaluations = await Evaluation.findAll({ where: { userId: id } })
-    return allEvaluations
+    const reducer = (accumulator: number, currentValue: number): number => accumulator + currentValue
+    return [allEvaluations, allEvaluations.map(e => e.firstEvaluation + e.secondEvaluation).reduce(reducer)]
+  }
+
+  public async findAllAverage (): Promise<[Evaluation[], number]> {
+    const allEvaluations = await Evaluation.findAll()
+    const reducer = (accumulator: number, currentValue: number): number => accumulator + currentValue
+    return [allEvaluations, allEvaluations.map(e => e.firstEvaluation + e.secondEvaluation).reduce(reducer)]
   }
 
   public async findOne (email: string): Promise<Student> {

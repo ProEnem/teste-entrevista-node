@@ -16,11 +16,10 @@ export default class StudentRoute extends RouteType {
   }
 
   public async routes (application: express.Application): Promise<void> {
-    application.get('/students', this.studentController.all.bind(null, this.studentService))
-    application.post('/students', this.studentController.create.bind(null, this.studentService))
-    application.post('/students/evaluation', checkJwt, this.studentController.createEvaluations.bind(null, this.studentService))
-    application.get('/students/evaluation', checkJwt, this.studentController.allEvaluations.bind(null, this.studentService))
-    application.get('/students/evaluation/average', checkJwt, this.studentController.findAverageEvaluation.bind(null, this.studentService))
+    application.post('/student', this.studentController.create.bind(null, this.studentService))
+    application.post('/student/evaluation', checkJwt, this.studentController.createEvaluations.bind(null, this.studentService))
+    application.get('/student/evaluation/average', checkJwt, this.studentController.findAverageEvaluation.bind(null, this.studentService))
+    application.get('/students/evaluations/average', checkJwt, this.studentController.findAllAverageStudents.bind(null, this.studentService))
     application.post('/authenticate', this.studentController.authenticate.bind(null, this.studentService))
   }
 }

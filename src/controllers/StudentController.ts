@@ -46,10 +46,25 @@ export default class StudentController {
     }
   }
 
+  public async findAllAverageStudents (service: StudentService, request: Request, response: Response): Promise<void> {
+    try {
+      const evaluationsWithAverage = await service.findAllAverage()
+      const evaluations = evaluationsWithAverage[0]
+      const totaEvaluations = evaluations.length * 2
+      const students = await service.all()
+      response.send({ totalStudents: students.length, average: evaluationsWithAverage[1] / totaEvaluations })
+    } catch (error) {
+      console.error(error)
+      response.status(400).send({ error: 'Error all test grades of students' })
+    }
+  }
+
   public async findAverageEvaluation (service: StudentService, request: Request, response: Response): Promise<void> {
     try {
-      const allTestGrade = await service.findAverage(request['userId'] as number)
-      response.send({ length: allTestGrade.length })
+      const evaluationsWithAverage = await service.findAverage(request['userId'] as number)
+      const evaluations = evaluationsWithAverage[0]
+      const totaEvaluations = evaluations.length * 2
+      response.send({ evaluations: evaluations, average: evaluationsWithAverage[1] / totaEvaluations })
     } catch (error) {
       console.error(error)
       response.status(400).send({ error: 'Error all test grades of students' })
