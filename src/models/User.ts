@@ -49,4 +49,4 @@ User.hasMany(TestGrade, {
   as: 'test_grades'
 })
 
-sequelize.sync({ force: true }).then()
+sequelize.sync().then()

@@ -24,6 +24,16 @@ export default class UserController {
     }
   }
 
+  public async createTestGrade (service: UserService, request: Request, response: Response): Promise<void> {
+    try {
+      // const user = await service.create(request.body)
+      // user.password = undefined
+      response.send()
+    } catch (error) {
+      response.status(400).send({ error: 'Error creating on test grades for students' })
+    }
+  }
+
   public async authenticate (service: UserService, request: Request, response: Response): Promise<void> {
     const { email, password } = request.body
     try {
