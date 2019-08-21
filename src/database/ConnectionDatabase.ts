@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize-typescript'
 import config from '../config/Config'
 export default class ConnectionDatabase {
-  static async connect (): Promise<void> {
+  public static async connect (): Promise<void> {
     const sequelize = new Sequelize({
       database: config.development.mysqlDatabase,
       username: config.development.mysqlUser,
