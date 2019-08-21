@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize'
 import config from '../config/Config'
 export default class ConnectionDatabase {
-  public static async connect (): Promise<void> {
+  public static instance (): Sequelize {
     const sequelize = new Sequelize({
       database: config.development.mysqlDatabase,
       username: config.development.mysqlUser,
@@ -10,6 +10,11 @@ export default class ConnectionDatabase {
       port: +config.development.port,
       dialect: 'mysql'
     })
+    return sequelize
+  }
+
+  public static async connect (): Promise<void> {
+    const sequelize = ConnectionDatabase.instance()
     try {
       await sequelize.authenticate()
     } catch (error) {
