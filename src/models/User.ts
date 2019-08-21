@@ -28,3 +28,5 @@ User.init({
   tableName: 'user',
   sequelize: sequelize
 })
+
+sequelize.sync().then()

@@ -8,7 +8,6 @@ class App extends RouteType {
   constructor () {
     super()
     this.routes()
-    this.connect()
   }
 
   public async connect (): Promise<void> {
