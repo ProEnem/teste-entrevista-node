@@ -1,8 +1,12 @@
-// TO DO: insert sequelize with decorators
-export default class User {
-  public name: string
+import { Model } from 'sequelize'
+export default class User extends Model {
+  public id!: number;
 
-  public email: string
+  public name!: string
 
-  public password: string
+  public email!: string
+
+  public readonly createdAt!: Date;
+
+  public readonly updatedAt!: Date;
 }

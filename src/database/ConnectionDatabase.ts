@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize-typescript'
+import { Sequelize } from 'sequelize'
 import config from '../config/Config'
 export default class ConnectionDatabase {
   public static async connect (): Promise<void> {
